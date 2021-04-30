@@ -1,0 +1,11 @@
+Script started on 2017-11-23 23:09:05-0700
+]0;cody.clark@csa3:~/CPSC-355cody.clark@csa3:~/CPSC-355$ ,[K./a5b 12 25
+December 25th is Winter
+]0;cody.clark@csa3:~/CPSC-355cody.clark@csa3:~/CPSC-355$ ./a5b 0 25
+ERROR: That was not a valid date.
+]0;cody.clark@csa3:~/CPSC-355cody.clark@csa3:~/CPSC-355$ ./a5b 3
+ERROR: usage: 5b mm dd
+]0;cody.clark@csa3:~/CPSC-355cody.clark@csa3:~/CPSC-355$ scrip[K[K[K[K[Kexit
+exit
+
+Script done on 2017-11-23 23:09:55-0700

@@ -1,0 +1,107 @@
+Script started on 2017-11-09 18:24:44-0700
+]0;cody.clark@csa1:~/CPSC-355cody.clark@csa1:~/CPSC-355$ gdb assign4
+GNU gdb (GDB) Fedora 8.0-13.fc26
+Copyright (C) 2017 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "aarch64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from assign4...done.
+(gdb) b main
+Breakpoint 1 at 0x400644: file assign4.s, line 61.
+(gdb) b p1set
+Breakpoint 2 at 0x400654: file assign4.s, line 69.
+(gdb) b p2set
+Breakpoint 3 at 0x40065c: file assign4.s, line 73.
+(gdb) b p1c
+Breakpoint 4 at 0x4006ac: file assign4.s, line 103.
+(gdb) b p2c
+Breakpoint 5 at 0x4006b8: file assign4.s, line 108.
+(gdb) run
+Starting program: /home/uga/cody.clark/CPSC-355/assign4 
+
+Breakpoint 1, main () at assign4.s:61
+61	main:	stp   x29, x30, [sp, alloc]!     // Allocates enough memory to the stack
+(gdb) c
+Continuing.
+
+Breakpoint 2, p1set () at assign4.s:69
+69		add   x8, x29, p2_s		 // Passes the address of the second pyramid into an argument
+(gdb) x/10d $fp+16
+0xfffffffff130:	3	4	0	0
+0xfffffffff140:	2	2	-1209936344	65535
+0xfffffffff150:	4196504	0
+(gdb) c
+Continuing.
+
+Breakpoint 3, p2set () at assign4.s:73
+73		adrp  x0, fmt1
+(gdb) cx/10d $fp+16[K[K40
+0xfffffffff148:	3	4	0	0
+0xfffffffff158:	2	2	0	0
+0xfffffffff168:	4195528	0
+(gdb) c
+Continuing.
+Initial pyramid values:
+Pyramid first origin = (0, 0)
+	Base width = 2  Base length = 2
+	Height = 3
+	Volume = 4
+
+Pyramid second origin = (0, 0)
+	Base width = 2  Base length = 2
+	Height = 3
+	Volume = 4
+
+
+Breakpoint 4, p1c () at assign4.s:103
+103		add   x0, x29, p2_s // 1st arg, address of the second pyramid
+(gdb) cx/10d $fp+40[C[C[C[C[C[Cc[Kx/10d $fp+16
+0xfffffffff130:	3	4	-5	7
+0xfffffffff140:	2	2	3	4
+0xfffffffff150:	0	0
+(gdb) x/10d $fp+16[C[C[C[C[C[Cc[Kx/10d $fp+40
+0xfffffffff148:	3	4	0	0
+0xfffffffff158:	2	2	0	0
+0xfffffffff168:	4195528	0
+(gdb) c
+Continuing.
+
+Breakpoint 5, p2c () at assign4.s:108
+108		adrp  x0, fmt2
+(gdb) cx/10d $fp+4016
+0xfffffffff130:	3	4	-5	7
+0xfffffffff140:	2	2	9	108
+0xfffffffff150:	0	0
+(gdb) x/10d $fp+16[C[C[C[C[C[Cc[Kx/10d $fp+40
+0xfffffffff148:	9	108	0	0
+0xfffffffff158:	6	6	0	0
+0xfffffffff168:	4195528	0
+(gdb) c
+Continuing.
+
+Changed pyramid values:
+Pyramid first origin = (-5, 7)
+	Base width = 2  Base length = 2
+	Height = 3
+	Volume = 4
+
+Pyramid second origin = (0, 0)
+	Base width = 6  Base length = 6
+	Height = 9
+	Volume = 108
+
+[Inferior 1 (process 11851) exited with code 017]
+(gdb) q
+]0;cody.clark@csa1:~/CPSC-355cody.clark@csa1:~/CPSC-355$ exit
+exit
+
+Script done on 2017-11-09 18:26:11-0700
